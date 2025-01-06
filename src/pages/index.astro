@@ -1,15 +1,307 @@
 ---
-import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import CallToAction from '../components/CallToAction.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Image } from 'astro:assets';
 ---
 
-<Layout title="GraphIT - Digital Autographs in AR">
-	<Hero />
-	<Features />
-	<CallToAction />
+<Layout title="GraphIT - Digital Autographs">
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#0A0F18] p-4">
+    <!-- Blueprint Grid Background -->
+    <div class="absolute inset-0 blueprint-grid"></div>
+    <div class="absolute inset-0 blueprint-dots"></div>
+    
+    <!-- Technical Decorative Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <svg class="absolute top-20 left-10 w-64 h-64 text-white/5" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        <path d="M50 10 L50 90 M10 50 L90 50" stroke="currentColor" stroke-width="0.5"/>
+      </svg>
+      <svg class="absolute bottom-20 right-10 w-96 h-96 text-white/5" viewBox="0 0 100 100">
+        <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        <line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" stroke-width="0.5"/>
+        <line x1="80" y1="20" x2="20" y2="80" stroke="currentColor" stroke-width="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <!-- Development Status Badge -->
+      <div class="inline-block mb-8">
+        <div class="flex items-center gap-2 text-xs tracking-widest mb-2">
+          <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+          <span class="text-white/70">DEVELOPMENT BUILD v0.1</span>
+        </div>
+        <div class="border border-white/20 rounded-lg p-1">
+          <h1 class="text-4xl md:text-6xl font-light text-white tracking-tight font-mono">
+            Graph<span class="text-white">IT</span>
+          </h1>
+        </div>
+      </div>
+
+      <p class="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+        The future of digital autographs. Connect with your favorite creators through 
+        personalized, collectible digital signatures.
+      </p>
+
+      <!-- Updated Button Style -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <button 
+          onclick="document.getElementById('waitlist-section').scrollIntoView({ behavior: 'smooth' })"
+          class="px-8 py-3 bg-white text-[#0A0F18] rounded-lg font-semibold 
+                 hover:bg-white/90 transition-all duration-300 transform hover:scale-105"
+        >
+          Join Waitlist
+        </button>
+        <a href="#about" class="text-white/50 hover:text-white transition-colors">
+          Learn More
+        </a>
+      </div>
+    </div>
+
+    <!-- Blueprint Measurements -->
+    <div class="absolute bottom-8 left-8 text-white/30 font-mono text-xs">
+      <div>SCALE 1:1</div>
+      <div>REV. 2025.1</div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="about" class="py-24 bg-[#0A0F18] relative">
+    <!-- Blueprint Background Elements -->
+    <div class="absolute inset-0 blueprint-grid"></div>
+    <div class="absolute inset-0 blueprint-dots"></div>
+
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto space-y-24">
+        {[
+          {
+            number: "01",
+            title: "Digital Signature",
+            description: "Request personalized digital autographs from creators worldwide. Each signature is unique and crafted just for you."
+          },
+          {
+            number: "02",
+            title: "Authenticity",
+            description: "Every digital autograph is verified and secured, ensuring your collectible is genuine and one-of-a-kind."
+          },
+          {
+            number: "03",
+            title: "Collection",
+            description: "Build your personal collection of authentic digital autographs from your favorite creators."
+          }
+        ].map(feature => (
+          <div class="feature-card relative">
+            <div class="absolute -left-16 top-0 text-4xl font-light text-white/20 font-mono">
+              {feature.number}
+            </div>
+            <h3 class="text-2xl text-white mb-4 font-light">{feature.title}</h3>
+            <p class="text-white/60">{feature.description}</p>
+            <div class="absolute left-0 -bottom-12 w-16 h-[1px] bg-white/20"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="waitlist-section" class="py-32 bg-[#0A0F18] relative">
+    <!-- Blueprint Background Elements -->
+    <div class="absolute inset-0 blueprint-grid opacity-50"></div>
+    <div class="absolute inset-0 blueprint-dots opacity-50"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-2xl mx-auto text-center space-y-8">
+        <div class="inline-block p-2 border border-white/20 rounded-lg mb-8">
+          <div class="text-xs text-white/70 tracking-widest">LAUNCHING SOON</div>
+        </div>
+        
+        <h2 class="text-3xl md:text-4xl text-white font-light">
+          Join the Future of Digital Autographs
+        </h2>
+
+        <form id="waitlistForm" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <div class="flex-1 relative">
+            <input 
+              type="email" 
+              name="emailAddress"
+              placeholder="Enter your email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
+              class="w-full px-4 py-3 bg-transparent border border-white/30 rounded-lg
+                     text-white placeholder:text-white/50 focus:border-white/60 
+                     focus:outline-none data-[invalid=true]:border-red-400/50"
+            />
+            <p class="absolute left-0 -bottom-6 text-red-400 text-sm hidden 
+                      data-[visible=true]:block animate-fadeIn">
+              Please enter a valid email address
+            </p>
+          </div>
+          <button 
+            type="submit"
+            class="px-6 py-3 bg-white text-[#0A0F18] rounded-lg font-semibold
+                   hover:bg-white/90 transition-all duration-300 disabled:opacity-50
+                   disabled:cursor-not-allowed"
+          >
+            Join Waitlist
+          </button>
+        </form>
+
+        <div class="h-6">
+          <p id="successMessage" class="text-green-400 hidden">
+            Thanks for joining! We'll be in touch soon.
+          </p>
+          <p id="errorMessage" class="text-red-400 hidden">
+            Oops! Something went wrong. Please try again.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-[#0A0F18] border-t border-white/10">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
+        <div>© {new Date().getFullYear()} GraphIT</div>
+        <div class="flex gap-6">
+          <a href="https://x.com/graphit_live" target="_blank" class="hover:text-white transition-colors">Twitter</a>
+          <a href="mailto:hello@graphit.live" class="hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<style>
+  .blueprint-grid {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .blueprint-dots {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.15) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+  }
+
+  /* Technical measurement lines */
+  .measurement-line {
+    @apply absolute border-t border-dashed border-white/20;
+  }
+
+  /* Updated scanline effect to not interfere with interactions */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none; /* This ensures clicks pass through */
+    z-index: 10; /* Lower z-index to ensure it doesn't block interactions */
+  }
+
+  .feature-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Replace these with your Google Form details
+  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc_3LGFSsiyV3OoEQV8FgjENzLfm8petLjjkbV-geKioHYiTA/formResponse';
+  const GOOGLE_FORM_EMAIL_FIELD = 'entry.1776232038';
+
+  // Email validation function
+  function isValidEmail(email: string) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
+  // Get form elements
+  const form = document.getElementById('waitlistForm') as HTMLFormElement;
+  const emailInput = form?.querySelector('input[type="email"]') as HTMLInputElement;
+  const errorMessage = emailInput?.parentElement?.querySelector('p') as HTMLParagraphElement;
+  const submitButton = form?.querySelector('button') as HTMLButtonElement;
+
+  // Validate on blur (focus out)
+  emailInput?.addEventListener('blur', (e) => {
+    const input = e.target as HTMLInputElement;
+    const isValid = input.value === '' || isValidEmail(input.value);
+    
+    input.setAttribute('data-invalid', (!isValid).toString());
+    errorMessage?.setAttribute('data-visible', (!isValid).toString());
+    submitButton.disabled = !isValid;
+  });
+
+  // Clear validation on focus
+  emailInput?.addEventListener('focus', (e) => {
+    const input = e.target as HTMLInputElement;
+    input.setAttribute('data-invalid', 'false');
+    errorMessage?.setAttribute('data-visible', 'false');
+    submitButton.disabled = false;
+  });
+
+  // Form submission
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput.value;
+
+    // Final validation check
+    if (!isValidEmail(email)) {
+      emailInput.setAttribute('data-invalid', 'true');
+      errorMessage?.setAttribute('data-visible', 'true');
+      submitButton.disabled = true;
+      return;
+    }
+
+    try {
+      // Disable form while submitting
+      emailInput.disabled = true;
+      submitButton.disabled = true;
+      
+      // Create form data for Google Forms
+      const formData = new FormData();
+      formData.append(GOOGLE_FORM_EMAIL_FIELD, email);
+
+      // Submit to Google Forms
+      const response = await fetch(GOOGLE_FORM_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+
+      // Show success message
+      document.getElementById('successMessage')?.classList.remove('hidden');
+      document.getElementById('errorMessage')?.classList.add('hidden');
+      
+      // Keep form disabled after successful submission
+      form.reset();
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      document.getElementById('successMessage')?.classList.add('hidden');
+      document.getElementById('errorMessage')?.classList.remove('hidden');
+      
+      // Re-enable form on error
+      emailInput.disabled = false;
+      submitButton.disabled = false;
+    }
+  });
+</script>
 </Layout>
