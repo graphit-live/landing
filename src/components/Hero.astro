@@ -1,0 +1,150 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<div class="hero-container">
+	<div class="hero-content">
+		<h1>
+			<span class="gradient-text">Digital Autographs</span>
+			<br />Reimagined in AR
+		</h1>
+		<p class="hero-subtitle">
+			Create, collect, and trade authentic digital autographs using revolutionary hand-tracking technology
+		</p>
+		<div class="cta-buttons">
+			<a href="#get-started" class="primary-button">Get Started</a>
+			<a href="#how-it-works" class="secondary-button">See How It Works</a>
+		</div>
+	</div>
+	
+	<div class="hero-visual">
+		<div class="floating-card">
+			<!-- Replace with your actual card design -->
+			<div class="card-content">
+				<div class="signature-placeholder"></div>
+			</div>
+		</div>
+		<div class="gradient-blob"></div>
+	</div>
+</div>
+
+<style>
+	.hero-container {
+		min-height: 90vh;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		padding: 2rem;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.hero-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	h1 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		line-height: 1.1;
+		font-weight: 700;
+	}
+
+	.gradient-text {
+		background: linear-gradient(135deg, #FF3366, #CB5EEE);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.hero-subtitle {
+		font-size: clamp(1.1rem, 2vw, 1.5rem);
+		color: var(--text-secondary);
+		max-width: 50ch;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.primary-button {
+		background: var(--primary-gradient);
+		color: white;
+		padding: 1rem 2rem;
+		border-radius: 100px;
+		text-decoration: none;
+		font-weight: 500;
+		transition: transform 0.2s;
+	}
+
+	.primary-button:hover {
+		transform: translateY(-2px);
+	}
+
+	.secondary-button {
+		color: var(--text-primary);
+		padding: 1rem 2rem;
+		border-radius: 100px;
+		text-decoration: none;
+		border: 1px solid #333;
+		font-weight: 500;
+		transition: all 0.2s;
+	}
+
+	.secondary-button:hover {
+		background: var(--bg-card);
+	}
+
+	.hero-visual {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.floating-card {
+		width: 300px;
+		height: 400px;
+		background: rgba(26, 26, 26, 0.8);
+		backdrop-filter: blur(20px);
+		border-radius: 20px;
+		box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+		animation: float 6s ease-in-out infinite;
+		position: relative;
+		z-index: 2;
+	}
+
+	.gradient-blob {
+		position: absolute;
+		width: 500px;
+		height: 500px;
+		background: linear-gradient(135deg, #00E6E633, #2563EB33);
+		filter: blur(100px);
+		border-radius: 100%;
+		z-index: 1;
+	}
+
+	@keyframes float {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-20px); }
+	}
+
+	@media (max-width: 768px) {
+		.hero-container {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+
+		.cta-buttons {
+			justify-content: center;
+		}
+
+		.hero-visual {
+			grid-row: 1;
+		}
+	}
+</style> 
